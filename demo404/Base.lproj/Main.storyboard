@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +15,69 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="715-K8-Pmu" userLabel="background">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FI-V6-kfd">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Show 404 Demo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="show404Demo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uvc-w3-tZz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="7FI-V6-kfd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="205" id="OLu-pd-lD4">
+                                <variation key="widthClass=compact" constant="191"/>
+                            </constraint>
+                            <constraint firstItem="715-K8-Pmu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SdA-gc-SPE"/>
+                            <constraint firstItem="715-K8-Pmu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="X61-6E-gwc"/>
+                            <constraint firstAttribute="bottom" secondItem="715-K8-Pmu" secondAttribute="bottom" constant="-5" id="coL-oJ-jxc"/>
+                            <constraint firstAttribute="centerX" secondItem="7FI-V6-kfd" secondAttribute="centerX" id="gAO-Lz-qti"/>
+                            <constraint firstAttribute="trailing" secondItem="715-K8-Pmu" secondAttribute="trailing" id="l44-bY-p1i"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="715-K8-Pmu"/>
+                                <exclude reference="7FI-V6-kfd"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="OLu-pd-lD4"/>
+                                <exclude reference="gAO-Lz-qti"/>
+                                <exclude reference="SdA-gc-SPE"/>
+                                <exclude reference="X61-6E-gwc"/>
+                                <exclude reference="coL-oJ-jxc"/>
+                                <exclude reference="l44-bY-p1i"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="715-K8-Pmu"/>
+                                <include reference="7FI-V6-kfd"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="OLu-pd-lD4"/>
+                                <include reference="gAO-Lz-qti"/>
+                                <include reference="SdA-gc-SPE"/>
+                                <include reference="X61-6E-gwc"/>
+                                <include reference="coL-oJ-jxc"/>
+                                <include reference="l44-bY-p1i"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="showButton" destination="7FI-V6-kfd" id="JvP-rA-9L5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="bg.jpg" width="640" height="1136"/>
+    </resources>
 </document>
