@@ -15,15 +15,17 @@ static NSString *const BABY404_TOP5_URL = @"http://qzone.qq.com/gy/404/top5.js";
 
 @property (strong, nonatomic) NSArray* babyInfoList;
 
-@property (strong, nonatomic)  NSURLConnection *urlConnection;
-@property (strong, nonatomic)  NSMutableData *receivedData;
+@property (strong, nonatomic) NSURLConnection *urlConnection;
+@property (strong, nonatomic) NSMutableData *receivedData;
 
 @property (strong, nonatomic) Baby404ViewController *baby404ViewController;
+
+@property (strong, nonatomic) NSArray* contraints;
 
 // 更新404页面数据
 - (void)updatePageData;
 
-- (void)show404Page:(UIView *)superView withOrientation:(UIInterfaceOrientation)orientation;
+- (void)show404Page:(UIView *)superView atController:(UIViewController *)parentController withOrientation:(UIInterfaceOrientation)orientation;
 
 @end
 
@@ -40,33 +42,46 @@ static NSString *const BABY404_TOP5_URL = @"http://qzone.qq.com/gy/404/top5.js";
     return sharedInstance;
 }
 
-- (void)show404Page:(UIView *)superView {
+- (void)show404Page:(UIView *)superView atController:(UIViewController *)parentController {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    [self show404Page:superView withOrientation:orientation];
+    [self show404Page:superView atController:parentController withOrientation:orientation];
 }
 
-- (void)show404Page:(UIView *)superView withOrientation:(UIInterfaceOrientation)orientation {
+- (void)show404Page:(UIView *)superView atController:(UIViewController *)parentController withOrientation:(UIInterfaceOrientation)orientation {
     [self dismissBaby404Page];
     
     self.baby404ViewController = [[Baby404ViewController alloc] initWithNibName:[NSString stringWithFormat:@"Baby404ViewController"] bundle:nil];
     self.baby404ViewController.orientation = orientation;
-    [superView addSubview:self.baby404ViewController.view];
-    [self.baby404ViewController viewDidAppear:NO];
+    
+    UIView* contentView = self.baby404ViewController.view;
+    if (parentController) {
+        [parentController addChildViewController:self.baby404ViewController];
+    }
+    
+    [superView addSubview:contentView];
+    contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [superView addConstraints:self.contraints];
 }
 
 - (void) dismissBaby404Page {
     if (self.baby404ViewController) {
-        [self.baby404ViewController viewWillDisappear:NO];
-        [self.baby404ViewController.view removeFromSuperview];
-        [self.baby404ViewController viewDidDisappear:NO];
+        UIView* contentView = self.baby404ViewController.view;
+        UIView* superView = contentView.superview;
+        [contentView removeFromSuperview];
+        
+        if (superView) {
+            [superView removeConstraints:self.contraints];
+            self.contraints = nil;
+        }
+        
         self.baby404ViewController = nil;
     }
 }
 
 -(void)updateOrientation:(UIInterfaceOrientation)orientation {
-//    [self.baby404ViewController setUpViewForOrientation:orientation];
+    //    [self.baby404ViewController setUpViewForOrientation:orientation];
     if (self.baby404ViewController) {
-        [self show404Page:self.baby404ViewController.view.superview withOrientation:orientation];
+        [self show404Page:self.baby404ViewController.view.superview atController:self.baby404ViewController.parentViewController withOrientation:orientation];
     }
 }
 
@@ -78,6 +93,28 @@ static NSString *const BABY404_TOP5_URL = @"http://qzone.qq.com/gy/404/top5.js";
     if (!self.urlConnection) {
         // TODO: Inform the user that the connection failed.
     }
+}
+
+- (NSArray *)contraints
+{
+    if (_contraints == nil) {
+        UIView* aView = self.baby404ViewController.view;
+        if (aView == nil) {
+            return nil;
+        }
+        
+        NSMutableArray* contraints = [NSMutableArray new];
+        [contraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[aView]-0-|"
+                                                                                options:0 metrics:nil
+                                                                                  views:NSDictionaryOfVariableBindings(aView)]];
+        [contraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[aView]-0-|"
+                                                                                options:0
+                                                                                metrics:nil
+                                                                                  views:NSDictionaryOfVariableBindings(aView)]];
+        _contraints = contraints;
+    }
+    
+    return _contraints;
 }
 
 #pragma mark NSURLConnection Delegate Methods

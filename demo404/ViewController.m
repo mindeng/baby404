@@ -27,7 +27,7 @@
 }
 
 - (void)show404Page {
-    [[Baby404Page sharedInstance]show404Page:self.view];
+    [[Baby404Page sharedInstance] show404Page:self.view atController:self];
 }
 
 - (IBAction)show404Demo:(UIButton *)sender {

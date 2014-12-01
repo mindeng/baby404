@@ -31,6 +31,7 @@
 		39ED632D1A27402F0034954A /* Baby404ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39ED632B1A27402F0034954A /* Baby404ViewController.m */; };
 		39ED632E1A27402F0034954A /* Baby404ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39ED632C1A27402F0034954A /* Baby404ViewController.xib */; };
 		39ED63301A27A10F0034954A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39ED632F1A27A10F0034954A /* CoreLocation.framework */; };
+		B28EB81F1A2C546100A7BB18 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B28EB81E1A2C546100A7BB18 /* bg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		39ED632B1A27402F0034954A /* Baby404ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Baby404ViewController.m; sourceTree = "<group>"; };
 		39ED632C1A27402F0034954A /* Baby404ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Baby404ViewController.xib; sourceTree = "<group>"; };
 		39ED632F1A27A10F0034954A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B28EB81E1A2C546100A7BB18 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 		39ED62FF1A2633CC0034954A /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B28EB81E1A2C546100A7BB18 /* bg.png */,
 				39ED63021A2633CC0034954A /* close.png */,
 				39ED63031A2633CC0034954A /* close@2x.png */,
 				39ED63041A2633CC0034954A /* landscape.png */,
@@ -273,6 +276,7 @@
 			files = (
 				39ED63151A2633CC0034954A /* close.png in Resources */,
 				39ED632E1A27402F0034954A /* Baby404ViewController.xib in Resources */,
+				B28EB81F1A2C546100A7BB18 /* bg.png in Resources */,
 				39ED63191A2633CC0034954A /* placeholder.png in Resources */,
 				39ED621E1A215B390034954A /* Main.storyboard in Resources */,
 				39ED63181A2633CC0034954A /* landscape@2x.png in Resources */,

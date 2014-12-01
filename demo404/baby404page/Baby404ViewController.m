@@ -97,14 +97,17 @@ static NSString *const BABY404_TOP5_URL = @"http://qzone.qq.com/gy/404/top5.js";
         if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             [self.locationManager requestWhenInUseAuthorization];
         }
-//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//        self.locationManager.distanceFilter = 1000.0f;
-//        [self.locationManager startUpdatingLocation];
+        
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        self.locationManager.distanceFilter = 1000.0f;
         [self.locationManager startUpdatingLocation];
     }else {
         //提示用户无法进行定位操作
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:
-                                  @"提示" message:@"定位不成功 ,请确认开启定位" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示"
+                                                           message:@"定位不成功 ,请确认开启定位"
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"取消"
+                                                 otherButtonTitles:@"确定", nil];
         [alertView show];
     }
     // 开始定位
@@ -120,31 +123,23 @@ static NSString *const BABY404_TOP5_URL = @"http://qzone.qq.com/gy/404/top5.js";
     // 获取当前所在的城市名
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     //根据经纬度反向地理编译出地址信息
-    [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *array, NSError *error)
-     {
-         if (array.count > 0)
-         {
+    [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *array, NSError *error) {
+         if (array.count > 0) {
              CLPlacemark *placemark = [array objectAtIndex:0];
-             
              //将获得的所有信息显示到label上
-             NSLog(@"%@",placemark.name);
+             NSLog(@"%@", placemark.name);
              //获取省份
              self.province = placemark.administrativeArea;
-         }
-         else if (error == nil && [array count] == 0)
-         {
+         } else if (error == nil && [array count] == 0) {
              NSLog(@"No results were returned.");
-         }
-         else if (error != nil)
-         {
+         } else if (error != nil) {
              NSLog(@"An error occurred = %@", error);
          }
      }];
     //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
     [manager stopUpdatingLocation];
 }
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error {
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"Error while getting core location : %@",[error localizedFailureReason]);
     if ([error code] == kCLErrorDenied) {
         //you had denied
@@ -228,12 +223,12 @@ static NSString *const BABY404_TOP5_URL = @"http://qzone.qq.com/gy/404/top5.js";
     if(UIInterfaceOrientationIsLandscape(orientation))
     {
         // fix for full screen mode, without this line touch event will go wrong.
-        self.view.frame = screenRect;
+        //self.view.frame = screenRect;
         
         [self.view addSubview:self.landscapeView];
         self.currentView = self.landscapeView;
         
-        self.currentView.center = CGPointMake(self.view.frame.size.width/2.0, self.view.frame.size.height/2.0);
+        self.currentView.center = CGPointMake(screenRect.size.width/2.0, screenRect.size.height/2.0);
 
         self.currentBgImageView= self.landBgImageView;
         self.currentHeadImageView = self.landHeadImageView;

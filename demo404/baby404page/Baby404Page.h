@@ -13,7 +13,7 @@
 
 + (Baby404Page *)sharedInstance;
 
-- (void)show404Page:(UIView *)superView;
+- (void)show404Page:(UIView *)superView atController:(UIViewController *)parentController;
 - (void)updateOrientation:(UIInterfaceOrientation)orientation;
 
 - (void)dismissBaby404Page;
