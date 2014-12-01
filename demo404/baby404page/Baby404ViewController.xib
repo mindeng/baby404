@@ -187,23 +187,9 @@
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="zYN-wq-yCU" userLabel="head">
                     <rect key="frame" x="108" y="82" width="118" height="156"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="128" id="1CM-Od-DYi"/>
                         <constraint firstAttribute="width" constant="118" id="YVM-2n-0gf"/>
-                        <constraint firstAttribute="width" constant="100" id="gfQ-3t-BzD"/>
                         <constraint firstAttribute="height" constant="156" id="wSK-a8-H5b"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="1CM-Od-DYi"/>
-                            <exclude reference="gfQ-3t-BzD"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
-                        <mask key="constraints">
-                            <include reference="1CM-Od-DYi"/>
-                            <include reference="gfQ-3t-BzD"/>
-                        </mask>
-                    </variation>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
