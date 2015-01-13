@@ -149,12 +149,10 @@ static NSString *const BABY404_TOP5_URL = @"http://qzone.qq.com/gy/404/top5.js";
 
 - (void) setupBabyPhoto {
     if (self.view.window && self.currentBabyPhoto) {
-        self.currentHeadImageView.contentMode = UIViewContentModeScaleAspectFill;
-//        CGRect newFrame = self.currentHeadImageView.frame;
-//        newFrame.size.width = 100;
-//        newFrame.size.height = 128;
-//        [self.currentHeadImageView setFrame:newFrame];
         self.currentHeadImageView.image = self.currentBabyPhoto;
+        self.currentHeadImageView.contentMode = UIViewContentModeScaleAspectFit;
+        NSLog(@"%s %d imageView = %@", __FUNCTION__, __LINE__, self.currentHeadImageView);
+        NSLog(@"%s %d %d", __FUNCTION__, __LINE__, (int)self.currentBabyPhoto.size.width);
     }
 }
 
